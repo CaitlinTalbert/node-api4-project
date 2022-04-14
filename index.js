@@ -1,20 +1,11 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
+const server = require("./src/server");
 
-const server = express();
+require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
 
-server.use(express.json());
-server.use(cors());
-
 server.get("/api/hello", (req, res) => {
   res.json({ message: "api is up" });
-});
-
-server.use("*", (req, res) => {
-  res.send(`<h1>Hello, there!</h1>`);
 });
 
 server.use((err, req, res, next) => {
